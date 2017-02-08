@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <title>Great Number Game (No congratulations)</title>
+    <style type="text/css">
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #remark{
+            color: white;
+            padding: 100px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form{
+            text-align: center;
+        }
+
+        h3{
+            margin: 0px;
+        }
+        #guess_in{
+            margin-top: 45px;
+        }
+
+        {% if correct == "notyet" %}
+        #correct{
+            display: none;
+        }
+        {% endif %}
+
+        {% if correct == False %}
+        #correct{
+            display: none;
+        }
+        {% endif %}
+
+        {% if correct == True %}
+        #wrong{
+            display: none;
+        }
+        {% endif %}
+
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the Great Number Game!</h1><br />
+    <h3>I am thinking of a number between 1 and 100</h3>
+    <h3>Take a guess!</h3>
+    <div id="wrong">
+        <form action='/checkguess' method='post'>
+            <input id="guess_in" type="text" name="guess" value=""><br /><br />
+            <input type="submit" name="submit" value="Let's see if you're psychic...">
+        </form>
+        <div id="remark" style="background-color:{{color}}">
+            {{remark}}
+        </div>
+    </div>
+    <div id="correct">
+        <div id="remark" style="background-color:{{color}}">
+            {{remark}}<br  /><br  />
+            <form action='/goback' method='post'>
+                <input type="submit" name="playagain" value="Play again!">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

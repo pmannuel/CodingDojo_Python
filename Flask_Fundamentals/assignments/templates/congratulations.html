@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>Great Number Game</title>
+    <style type="text/css">
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #remark{
+            color: white;
+            padding: 100px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the Great Number Game!</h1><br />
+    <h3>Congratulations!</h3>
+    <div id="remark" style="background-color:{{color}}">
+        {{remark}}<br  /><br  />
+        <form action='/goback' method='post'>
+            <input type="submit" name="playagain" value="Play again!">
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript" src="http://bpmaker.giffy.me/userdata/user/52/52212/99/parts.js"></script>
+
+</html>

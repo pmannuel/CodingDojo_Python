@@ -1,0 +1,33 @@
+<html>
+    <head>
+       <title>Form Test Index</title>
+    </head>
+    <body>
+      <h1>Coding Dojo Survey</h1>
+      <h3>Please complete this survey!</h3>
+      <form action='/result' method='post'>
+          Your Name: <input type='text' name='name'>
+          <br  /><br  />
+          Dojo Location:
+          <select id="dropdown1" name='dojolocation'>
+              <option value="DC">DC</option>
+              <option value="Seattle">Seattle</option>
+              <option value="San Jose">San Jose</option>
+              <option value="Austin">Austin</option>
+          </select>
+          <br  /><br  />
+          Favorite Language:
+          <select id="dropdown2" name='favlanguage'>
+              <option value="Python">Python</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="CSS">CSS</option>
+              <option value="HTML">HTML</option>
+          </select>
+          <br  /><br  />
+          Comment (optional):<br  /><br  />
+          <input type='text' name='comment'>
+          <br  /><br  />
+          <input type='submit' value='Submit survey'>
+      </form>
+    </body>
+</html>

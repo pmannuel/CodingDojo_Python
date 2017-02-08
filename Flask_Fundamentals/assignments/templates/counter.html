@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <title>Hey stalker!</title>
+    <style type="text/css">
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>You've stalked this page:</h1><br />
+    <h3>{{session['counter']}} times</h3><br /><br />
+    <form action='/plustwo' method='post'>
+        <input type="submit" name="plus2_bttn" value="+2">
+    </form>
+    <form action='/reset' method='post'>
+        <input type="submit" name="reset_bttn" value="Reset">
+    </form>
+</body>
+
+</html>
