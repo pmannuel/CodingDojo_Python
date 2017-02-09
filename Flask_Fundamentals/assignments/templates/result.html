@@ -5,15 +5,22 @@
 </head>
 
 <body>
-    <h1>Coding Dojo Survey</h1><br />
+    <h1>Coding Dojo Survey</h1>
     <h3>Submitted Info</h3><br />
-    <p>Name: {{ name }}</p><br />
-    <p>Dojo Location: {{ dojolocation }}</p><br />
-    <p>Fav Language: {{ favlanguage }}</p><br />
-    <p>Comment: {{ comment }}</p><br />
+    <p><b>Name: </b>{{ session['name'] }}</p>
+    <p><b>Dojo Location: </b>{{ session['dojolocation'] }}</p>
+    <p><b>Fav Language: </b>{{ session['favlanguage'] }}</p>
+    <p><b>Comment: </b>{{ session['comment'] }}</p><br />
     <form action='/goback' method='post'>
         <input type='submit' value='Go back'>
     </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color:green">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 </body>
 
 </html>

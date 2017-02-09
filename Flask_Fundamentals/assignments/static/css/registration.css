@@ -1,0 +1,18 @@
+*{
+    /*outline: 1px solid red;*/
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    color: blue;
+}
+
+form{
+    text-align: center;
+}

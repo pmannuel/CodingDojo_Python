@@ -1,0 +1,35 @@
+<!-- <html>
+    <head>
+       <title>Teenage Mutant Ninja!</title>
+    </head>
+    <body>
+        <img src='{{ url_for('static', filename='ninja_img/{{ ninja }}.jpg') }}' alt='tmnt'>
+    </body>
+</html> -->
+
+<html>
+    <head>
+       <title>Disappearing Ninjas</title>
+    </head>
+    <body>
+        {% if noNinjas %}
+            <h1>No Ninjas Here!</h1>
+        {% endif %}
+        {% if allNinjas %}
+            <img id='tmnt' src='{{ url_for('static', filename='ninja_img/tmnt.png') }}' alt='tmnt'>
+        {% endif %}
+        {% if allNinjas == False %}
+    		{% if color == 'blue' %}
+                <img id="leornado" src='{{ url_for('static', filename='ninja_img/leonardo.jpg') }}' alt='tmnt'>
+            {% elif color == 'orange' %}
+                <img id="michelangelo" src='{{ url_for('static', filename='ninja_img/michelangelo.jpg') }}' alt='tmnt'>
+            {% elif color == 'red' %}
+                <img id="raphael" src='{{ url_for('static', filename='ninja_img/raphael.jpg') }}' alt='tmnt'>
+            {% elif color == 'purple' %}
+                <img id="donatello" src='{{ url_for('static', filename='ninja_img/donatello.jpg') }}' alt='tmnt'>
+            {% else %}
+                <img id="notapril" src='{{ url_for('static', filename='ninja_img/notapril.jpg') }}' alt='tmnt'>
+            {% endif %}
+        {% endif %}
+    </body>
+</html>

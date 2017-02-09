@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session, flash
 app = Flask(__name__)
+app.secret_key = "hotdoggy"
 # our index route will handle rendering our form
 
 @app.route('/')
@@ -12,16 +13,22 @@ def index():
 def give_result():
    print "Got Post Info"
 
-   name = request.form['name']
-   dojolocation = request.form['dojolocation']
-   favlanguage = request.form['favlanguage']
-   comment = request.form['comment']
+   session['name'] = request.form['name']
+   session['dojolocation'] = request.form['dojolocation']
+   session['favlanguage'] = request.form['favlanguage']
+   session['comment'] = request.form['comment']
 
-   return render_template("result.html", name=name, dojolocation=dojolocation, favlanguage=favlanguage, comment=comment)
+   if len(session['name']) < 1 or session['dojolocation'] == "none" or session['favlanguage'] == "none":
+       flash("All survey questions must be answered!")
+       return redirect('/')
+   else:
+       flash("Thank you {} for filling this survey!".format(session['name']))
+       return render_template("result.html")
 
 @app.route('/goback', methods=['POST'])
 def go_back():
-     return redirect('/')
+    session.clear()
+    return redirect('/')
 
 @app.route('/show')
 def show_user():

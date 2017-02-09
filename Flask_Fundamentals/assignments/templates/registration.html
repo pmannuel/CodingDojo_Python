@@ -1,0 +1,42 @@
+<html>
+    <head>
+       <title>Register today!</title>
+       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registration.css') }}">
+    </head>
+    <body>
+      <h1>Sign Up</h1>
+      <h3>Just one more step!</h3>
+      <form action='/validating' method='post'>
+          <table>
+              <tr>
+                  <td>First name: </td>
+                  <td><input type='text' name='firstname'></td>
+              </tr>
+              <tr>
+                  <td>Last name: </td>
+                  <td><input type='text' name='lastname'></td>
+              </tr>
+              <tr>
+                  <td>Email: </td>
+                  <td><input type='text' name='email'></td>
+              </tr>
+              <tr>
+                  <td>Password: </td>
+                  <td><input type='text' name='pass'></td>
+              </tr>
+              <tr>
+                  <td>Confirm password: </td>
+                  <td><input type='text' name='cpass'></td>
+              </tr>
+          </table>
+          <br  /><input type='submit' value='Register!'>
+      </form>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <p style="color:{{session['color']}}">{{message|safe}}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+    </body>
+</html>

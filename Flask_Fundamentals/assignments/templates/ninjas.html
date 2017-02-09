@@ -1,0 +1,22 @@
+<html>
+    <head>
+       <title>Teenage Mutant Ninja!</title>
+       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/disappearing_ninjas.css') }}">
+    <style type="text/css">
+        {% if session['HaveNinjas'] == False %}
+            #tmnt{
+                display: none;
+            }
+        {% endif %}
+        {% if session['HaveNinjas'] == True %}
+            h1{
+                display: none;
+            }
+        {% endif %}
+    </style>
+    </head>
+    <body>
+        <h1>NO NINJAS HERE</h1>
+        <img id='tmnt' src='{{ url_for('static', filename='ninja_img/tmnt.png') }}' alt='tmnt'>
+    </body>
+</html>
