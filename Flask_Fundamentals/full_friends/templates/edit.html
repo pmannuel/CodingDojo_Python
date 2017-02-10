@@ -1,0 +1,9 @@
+{% for edit in edit_friend %}
+    <h2>Edit {{edit['first_name']}}</h2>
+    <form action='/friends/{{edit['id']}}' method='POST'>
+        <label for="first_name">First Name:<input type="text" name="first_name" value="{{edit['first_name']}}"></label>
+        <label for="last_name">Last Name:<input type="text" name="last_name" value="{{edit['last_name']}}"</label>
+        <label for="occupation">Occupation:<input type="text" name="occupation" value="{{edit['occupation']}}"></label>
+        <input type="submit" value="Edit">
+    </form>
+{% endfor %}

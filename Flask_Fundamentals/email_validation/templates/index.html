@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='email_validation.css') }}">
+    </head>
+    <body>
+        <div id="flash_message" style="color:{{session['color']}}">
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for message in messages %}
+                  <p style="color:{{color}}">{{message}}</p>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+        </div>
+        <br  /><img id='tmnt' src='{{ url_for('static', filename='wavey.gif-c200') }}' alt='wavey'><br  />
+        {% if notValid %}
+            <br  />
+            <form action='/validating' method='post'>
+                email address: <input type="text" name="email">
+                <input id="submit" type="submit" name="action" value="submit">
+            </form>
+        {% endif %}
+        {% if Valid %}
+            <h3><u>Email Addresses Entered:</u></h3>
+            <table>
+                {% for email in emails %}
+                    <tr>
+                        <td>{{email['created_at'].strftime('%m/%d/%y %H:%M %p')}}</td>
+                        <td>&nbsp&nbsp&nbsp</td>
+                        <td>{{email['email']}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        <script type="text/javascript">
+            $('#submit').makeItRain();
+        </script>
+    </body>
+</html>

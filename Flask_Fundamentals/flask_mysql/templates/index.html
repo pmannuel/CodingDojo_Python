@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <h2>User Demo</h2>
+    <form action="/create" method="post">
+        <p>First Name: <input type="text" name="first_name" value=""></p>
+        <p>Last Name: <input type="text" name="last_name" value=""></p>
+        <p>Age: <input type="text" name="age" value=""></p>
+        <p><input type="submit" name="submit" value="submit"></p>
+    </form>
+    <!-- {{users}} -->
+    {% for user in users%}
+        <p>{{user['first_name']}}</p>
+        <p>{{user['last_name']}}</p>
+        <p>{{user['age']}}</p>
+    {% endfor %}
+</body>
+
+</html>

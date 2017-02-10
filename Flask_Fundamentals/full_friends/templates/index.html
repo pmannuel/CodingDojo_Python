@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <title>Gintoki's Friends</title>
+</head>
+
+<body>
+    <h1>Hi! I am Sakata Gintoki.</h1>
+    <hr>
+    <h2>Add a Friend</h2>
+    <form action='/friends' method='POST'>
+        <label for="first_name">First Name: <input type="text" name="first_name" id="first_name"></label>
+        <label for="last_name">Last Name: <input type="text" name="last_name" id="last_name"></label>
+        <label for="occupation">Occupation: <input type="text" name="occupation" id="occupation"></label>
+        <input type="submit" value="Add">
+    </form>
+    <hr>
+    <p>These are all my friends!</p>
+    <table>
+        <tr>
+            <td>FIRST NAME</td>
+            <td>&nbsp&nbsp&nbsp</td>
+            <td>LAST NAME</td>
+            <td>&nbsp&nbsp&nbsp</td>
+            <td>OCCUPATION</td>
+        </tr>
+        {% for friend in friends %}
+        <tr>
+            <td>{{friend['first_name']}}</td>
+            <td>&nbsp&nbsp&nbsp</td>
+            <td>{{friend['last_name']}}</td>
+            <td>&nbsp&nbsp&nbsp</td>
+            <td>{{friend['occupation']}}</td>
+            <td>
+                <a href="/friends/{{friend['id']}}/edit"><button>Edit</button></button></a>
+            </td>
+            <td>
+                <a href="/friends/{{friend['id']}}/delete"><button>Delete</button></button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

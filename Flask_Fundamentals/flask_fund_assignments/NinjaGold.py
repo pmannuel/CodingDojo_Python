@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, session
+import random, math, datetime
 app = Flask(__name__)
 app.secret_key = 'hotdoggy'
 
@@ -12,14 +13,13 @@ def index():
     try:
         session['log'] += session['new_log']
     except KeyError:
-        session['log'] = ""
+        session['log'] = "" # []
 
     return render_template("NinjaGold.html")
 
 @app.route('/earning', methods=['POST'])
 def earning():
-    import random, math, datetime
-    session['timestamp'] = '{:(%Y/%m/%d %H:%M)}'.format(datetime.datetime.now())
+    session['timestamp'] = '{:(%Y/%m/%d %H:%M%p)}'.format(datetime.datetime.now())
     session['color'] = 'green'
 
     if request.form['action'] == 'Farm':
@@ -50,7 +50,7 @@ def earning():
             return redirect('/')
 
     session['new_log'] = "<p style='color:" + session['color'] +"'>Earned " + str(session['earned']) + " golds from the " + session['location'] + "! " + session['timestamp'] + "</p>"
-
+    # session['log'].append()
     return redirect('/')
 
 @app.route('/reset', methods=['POST'])

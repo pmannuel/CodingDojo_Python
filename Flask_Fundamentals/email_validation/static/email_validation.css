@@ -1,0 +1,24 @@
+body{
+    background-color: #D3F8FE;
+    padding: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#flash_message{
+    position: relative;
+    width: 70vh;
+    height: 10vh;
+    text-align: center;
+    line-height: 60px;
+    background-color: #fff;
+    border: 8px solid #666;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    -webkit-box-shadow: 2px 2px 4px #888;
+    -moz-box-shadow: 2px 2px 4px #888;
+    box-shadow: 2px 2px 4px #888;
+}
