@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>Register today!</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registration.css') }}">
+</head>
+
+<body>
+    <div id="wrapper">
+            <div id="login_page">
+                <h1>SIGN IN</h1>
+                <form action='/user/log_in' method='post'>
+                    <p>Email:</p>
+                    <p><input type='text' name='email'></p>
+                    <p>Password:</p>
+                    <p><input type='text' name='pass'></p>
+                    <p class="login_bttn"><input type='submit' name='login' value="Sign In"></p>
+                </form>
+            </div>
+            <div id="signup_page">
+                <h1>REGISTER</h1>
+                <p class="sub-heads">Register to create an account to enjoy all the benefits of becoming a member.</p>
+                <form action='/register' method='post'>
+                    <p>First name: </p>
+                    <p><input type='text' name='first_name'></p>
+                    <p>Last name: </p>
+                    <p><input type='text' name='last_name'></p>
+                    <p>Email: </p>
+                    <p><input type='text' name='email'></p>
+                    <p>Password: </p>
+                    <p><input type='text' name='pass'></p>
+                    <p>Confirm password: </p>
+                    <p><input type='text' name='cpass'></p>
+                    <input type='submit' value='Register your Voice'>
+                </form>
+            </div>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for message in messages %}
+                  <p style="color:{{session['color']}}">{{message|safe}}</p>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+    </div>
+</body>
+
+</html>
