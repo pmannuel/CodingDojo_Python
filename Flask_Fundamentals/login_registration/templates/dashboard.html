@@ -2,13 +2,12 @@
 
 <head>
     <title>Coding Dojo Wall</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registration.css') }}"> -->
     <style type="text/css">
         #wrapper {
             margin: 0 auto;
             width: 70%;
-            height: 100%;
             background-color: #F1F4F8;
         }
 
@@ -43,6 +42,9 @@
         p.comment{
             margin-left: 3%;
         }
+        #comment_submit{
+            margin-left: 80%
+        }
 
     </style>
 </head>
@@ -65,12 +67,12 @@
                 <p>Post a message</p>
                 <form action='/post_message' method='post'>
                     <input type="text" name="post" placeholder="What's on your mind?">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Post a message ►</button>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Post a message <i class="material-icons right">send</i></button>
                 </form>
             </div>
             {% for post in posts %} {% if post['post']!= None %}
             <div class="posts">
-                <p>{{post['first_name']}} {{post['last_name']}} - {{post['created_at']}}</p>
+                <p><i class="material-icons right">star</i>{{post['first_name']}} {{post['last_name']}} - {{post['created_at']}}</p>
                 <h5>{{post['post']}}</h5>
 
                 {% for comment in comments %} {% if comment['post_id'] == post['id'] %}
@@ -83,8 +85,7 @@
                     <p>Post a comment</p>
                     <input type="text" name="comment" value="">
                     <input type="hidden" name="post_id" value="{{post['id']}}">
-                    <button class="btn waves-effect waves-light" type="submit" name="submit_comment">Post comment </button>
-                    <!-- <input class="comment_bttn" type="submit" name="submit_comment" value="Post comment"> -->
+                    <button id="comment_submit" class="btn waves-effect waves-light" type="submit" name="submit_comment">Post comment </button>
                 </form>
             </div>
             {% endif %} {% endfor %}
