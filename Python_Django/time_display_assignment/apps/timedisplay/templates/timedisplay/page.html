@@ -14,5 +14,14 @@
         <p>{{date}}</p>
         <p>{{time}}</p>
     </div>
+    <h1>sign up for the time-travellers newsletter</h1>
+    <div class="signup_form">
+        <form class="signup_form" action="/new_user" method="post">
+            {% csrf_token %}
+            <input type="text" name="email" value="">
+            <input type="submit" name="submit" value="subscribe">
+        </form>
+        {{request.session.word}}
+    </div>
 </body>
 </html>

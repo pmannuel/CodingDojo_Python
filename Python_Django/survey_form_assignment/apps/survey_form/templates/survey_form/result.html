@@ -1,0 +1,20 @@
+<html>
+
+<head>
+    <title>Form Test Index</title>
+</head>
+
+<body>
+    <h1>Coding Dojo Survey</h1><br />
+    <h3>Submitted Info</h3>
+    <p><b>Name: </b>{{ request.session.name }}</p>
+    <p><b>Dojo Location: </b>{{ request.session.dojolocation }}</p>
+    <p><b>Fav Language: </b>{{ request.session.favlanguage }}</p>
+    <p><b>Comment: </b>{{ request.session.comment }}</p><br />
+    <form action='/' method='post'>
+        {% csrf_token %}
+        <input type='submit' value='Go back'>
+    </form>
+</body>
+
+</html>
