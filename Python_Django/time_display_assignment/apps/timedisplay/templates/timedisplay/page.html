@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Date and Time</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'timedisplay/css/page.css' %}"media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <h1>current time and date</h1>
+    <div class="clock">
+        <p>{{date}}</p>
+        <p>{{time}}</p>
+    </div>
+</body>
+</html>
