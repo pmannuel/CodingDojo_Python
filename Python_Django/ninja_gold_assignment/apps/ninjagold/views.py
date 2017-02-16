@@ -37,6 +37,9 @@ def process_money(request, activity):
         'txt_color' : txt_color
     }
     request.session['logs'].insert(0, log_data) #append front
+    print ('*'*50)
+    print request.session['logs']
+    print ('*'*50)
 
     # Update gold status accordingly
     request.session['gold'] += earning
