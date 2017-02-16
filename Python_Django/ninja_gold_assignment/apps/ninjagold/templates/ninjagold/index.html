@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ninja Gold</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'ninjagold/css/index.css' %}"media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <h3 id="gold_stat">Your gold: {{request.session.gold}}</h3>
+    <div id="processes">
+        <div class="process">
+            <h1>Farm</h1>
+            <h4>(earn 10-20 golds)</h4>
+            <a href="/process_money/farm"><button>Find Gold!</button></a>
+        </div>
+        <div class="process">
+            <h1>Cave</h1>
+            <h4>(earn 5-10 golds)</h4>
+            <a href="/process_money/cave"><button>Find Gold!</button></a>
+        </div>
+        <div class="process">
+            <h1>House</h1>
+            <h4>(earn 2-5 golds)</h4>
+            <a href="/process_money/house"><button>Find Gold!</button></a>
+        </div>
+        <div class="process">
+            <h1>Casino</h1>
+            <h4>(earn -50-50 golds)</h4>
+            <a href="/process_money/casino"><button>Find Gold!</button></a>
+        </div>
+    </div>
+    <div id="activities">
+        Activities:<br  /><br />
+        <!-- <div id="activities_log">
+            {% for log in request.session.log %}
+            <p style="color:green">{{log}}</p>
+            {% endfor %}
+        </div> -->
+        <div id="activities_log">
+            {% for log in request.session.logs %}
+            <p style="color:{{log.txt_color}}">{{log.act_log}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <a href="/reset"><button>Reset Game</button></a>
+</body>
+</html>

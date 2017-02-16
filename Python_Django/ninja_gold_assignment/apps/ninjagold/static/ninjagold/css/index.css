@@ -1,0 +1,36 @@
+*{
+    /*outline: 1px solid yellow;*/
+    padding: 1%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+#gold_stat{
+    display: flex;
+}
+#processes{
+    display: flex;
+    justify-content: space-between;
+}
+div.process{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 20vh;
+    outline: 3px solid black;
+}
+div.process h4{
+    display: flex;
+    flex-wrap: nowrap;
+}
+#activities_log{
+    outline: 3px solid black;
+    height: 10vh;
+    overflow-y: scroll;
+}
+#activities_log p{
+    margin: 0px;
+    padding: 0px;
+}

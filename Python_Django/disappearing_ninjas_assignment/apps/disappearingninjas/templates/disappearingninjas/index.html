@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Disappearing Ninjas</title>
+    {% load staticfiles %}
+</head>
+<body>
+    {% if noNinjas == True %}
+        <h1>No Ninjas Here!</h1>
+    {% endif %}
+    {% if allNinjas == True %}
+        <h1>All the ninja turtles</h1>
+    {% endif %}
+    {% if allNinjas == False %}
+    	{% if color == 'blue' %}
+            <h1>blue turtle</h1>
+        {% elif color == 'orange' %}
+            <h1>orange turtle</h1>
+        {% elif color == 'red' %}
+            <h1>red turtle</h1>
+        {% elif color == 'purple' %}
+            <h1>purple turtle</h1>
+        {% else %}
+            <h1>april</h1>
+            <img src="{% static 'disappearingninjas/images/april.jpg' %}" alt="">
+        {% endif %}
+    {% endif %}
+</body>
+</html>
