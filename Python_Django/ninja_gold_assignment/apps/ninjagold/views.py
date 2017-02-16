@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 import random, math, datetime
 
 def index(request):
-    if (('gold' in request.session) == False):
+    if 'gold' not in request.session:
         request.session['gold'] = 0
     if (('logs' in request.session) == False):
         request.session['logs'] = []
@@ -16,32 +16,27 @@ def reset(request):
     return redirect('/')
 
 def process_money(request, activity):
-    action = activity
     txt_color = "green" #initialize log text color to green
 
-    # register location
-    if action != 'reset':
-        location = activity
-
-    if action == 'farm':
+    if activity == 'farm':
         earning = random.randint(10,20)
-    if action == 'cave':
+    if activity == 'cave':
         earning = random.randint(5,10)
-    if action == 'house':
+    if activity == 'house':
         earning = random.randint(2,5)
-    if action == 'casino':
+    if activity == 'casino':
         earning = random.randint(-50,50)
         if earning < 0:
             txt_color = "red"
 
     #Register activity log
     timestamp = '{:(%Y/%m/%d %H:%M%p)}'.format(datetime.datetime.now())
-    log = "Earned {} from the {}! ".format(earning, location) + timestamp
+    log = "Earned {} from the {}! ".format(earning, activity) + timestamp
     log_data = {
         'act_log' : log,
         'txt_color' : txt_color
     }
-    request.session['logs'].append(log_data)
+    request.session['logs'].insert(0, log_data) #append front
 
     # Update gold status accordingly
     request.session['gold'] += earning

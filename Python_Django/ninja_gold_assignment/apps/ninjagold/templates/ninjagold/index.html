@@ -35,9 +35,11 @@
     <div id="activities">
         Activities:<br  /><br />
         <!-- <div id="activities_log">
+         {% comment %}
             {% for log in request.session.log %}
             <p style="color:green">{{log}}</p>
             {% endfor %}
+        {% endcomment %}
         </div> -->
         <div id="activities_log">
             {% for log in request.session.logs %}
