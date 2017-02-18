@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Email Validation</title>
 </head>
+
 <body>
     <form action='/validate' method='post'>
-        {% csrf_token %}
-        email address: <input type="text" name="email">
+        {% csrf_token %} email address: <input type="text" name="email">
         <input id="submit" type="submit" name="submit" value="submit">
     </form>
     <hr>
-        <p style="color:{{request.session.flash.txt_color}}">{{request.session.flash.message}}</p>
-        {% if request.session.flash.isvalid %}
-        <h1>Email adresses entered:</h1>
-            {% for user in users %}
-            <p>{{user.email}} | joined: {{user.created_at}}</p>
-            {% endfor %}
+    <p>FLASH: {% if sigh %}
+        <ul class="messages">
+            {% for message in sigh %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+        </ul>
         {% endif %}
+    </p>
+
+    <p style="color:{{request.session.flash.txt_color}}">{{request.session.flash.message}}</p>
+    {% if request.session.flash.isvalid %}
+    <h1>Email adresses entered:</h1> {% for user in users %}
+    <p>{{user.email}} | joined: {{user.created_at}}</p>
+    {% endfor %} {% endif %}
 </body>
+
 </html>
