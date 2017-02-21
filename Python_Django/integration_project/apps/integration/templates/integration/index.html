@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Integration Index Page</title>
+</head>
+
+<body>
+    <h1>This is the Integration app index page</h1>
+    <form action="{%url 'main:user_to_course'%}" method="post">
+        {% csrf_token %}
+        <select name="user_selected">
+            <option selected="selected">Users</option>
+            {% for user in users%}
+                <option value="{{user.id}}">{{user.firstname}} {{user.lastname}}</option>
+            {%endfor%}
+        </select>
+        <select name="course_selected">
+            <option selected="selected">Courses</option>
+            {% for result in results%}
+                <option value="{{result.id}}">{{result.name}}</option>
+            {%endfor%}
+        </select>
+        <input type="submit" name="submit" value="Add User To Course">
+    </form>
+    <hr>
+    <table>
+        <tr>
+            <th>Course</th>
+            <th>Users</th>
+            <th>No</th>
+        </tr>
+        {%for result in results%}
+        <tr>
+            <td>{{result.id}}</td>
+            <td>{{result.name}}</td>
+            <td>{{result.num_users}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+</body>
+
+</html>

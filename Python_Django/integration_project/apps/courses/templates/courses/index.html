@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Manage Bootcamp Courses</title>
+</head>
+<body>
+    <div id="add_course_form">
+        <h1>Add a new course</h1>
+        <form class="" action="{% url 'courses:courses_add' %}" method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Course Name:</td>
+                    <td><input type="text" name="course_name" value=""></td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td><textarea name="description" rows="8" cols="80"></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="add_course" ></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <hr>
+    <div id="course_table">
+        <table>
+            <tr>
+                <th>Course Name</th>
+                <th class="description">Description</th>
+                <th>Date Added</th>
+                <th>Action</th>
+            </tr>
+            {% for course in courses %}
+            <tr>
+                <td>{{course.name}}</td>
+                <td>{{course.description}}</td>
+                <td>{{course.created_at}}</td>
+                <td><a href="{%url 'courses:courses_del' course_id=course.id%}">remove</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
