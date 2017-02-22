@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit a product | Semi Restful Route Demo</title>
+</head>
+<body>
+    <h1>Edit Product {{edit_product.id}}</h1>
+    <form class="" action="{% url 'srr:save_edit' product_id=edit_product.id%}" method="post">
+    {% csrf_token %}
+        <p>Name: <input type="text" name="name" value="{{edit_product.name}}"></p>
+        <p>Description: <input type="text" name="description" value="{{edit_product.description}}"></p>
+        <p>Price: <input type="text" name="price" value="{{edit_product.price}}"></p>
+        <p><input type="submit" value="Update"></p>
+    </form>
+    <a href="{% url 'srr:index' %}">Go back</a>
+</body>
+</html>

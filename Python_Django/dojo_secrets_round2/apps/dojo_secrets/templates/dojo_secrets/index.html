@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dojo Secrets Homepage</title>
+</head>
+<body>
+    <a href="{%url 'logreg:logout'%}">Log Out</a>
+    <h1>Hello, {{user.firstname}}!</h1>
+    <form class="" action="{%url 'dojo_secrets:addsecret'%}" method="post">
+        {% csrf_token %}
+        <textarea name="secret" rows="8" cols="80"></textarea>
+        <input type="hidden" name="creator" value="{{user.id}}">
+        <input type="submit" name="submit" value="Post">
+    </form>
+    <hr>
+    <h1>Recent Secrets</h1>
+    <a href="{%url 'dojo_secrets:mostpopular'%}">Most Popular Secrets</a>
+    {% for secret in secrets%}
+    <p>
+        {{secret.content}} {{secret.created_at}} <i>{{secret.num_likes}} Likes</i>
+        {% if secret.isLiked %}
+        <b>You liked this</b>
+        {% else %}
+        <a style="text-decoration:none;" href="{%url 'dojo_secrets:like' id=secret.id%}">👍</a>
+        {% endif %}
+        {% if secret.user_id == user.id %}
+        <a href="{%url 'dojo_secrets:delete' id=secret.id%}">delete</a>
+        {% endif %}
+    </p>
+    {% endfor %}
+</body>
+</html>

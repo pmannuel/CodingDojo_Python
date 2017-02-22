@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create a new product | Semi Restful Route Demo</title>
+</head>
+<body>
+    <h1>Create A New Product</h1>
+    <form class="" action="{% url 'srr:addprod' %}" method="post">
+    {% csrf_token %}
+        <p>Name: <input type="text" name="name"></p>
+        <p>Description: <input type="text" name="description"></p>
+        <p>Price: <input type="text" name="price"></p>
+        <p><input type="submit" value="Create"></p>
+    </form>
+    <a href="{% url 'srr:index' %}">Go back</a>
+</body>
+</html>
