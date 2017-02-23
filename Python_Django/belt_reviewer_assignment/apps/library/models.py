@@ -5,6 +5,7 @@ from ..login_register.models import Users, UsersManager
 class Books(models.Model):
     title = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add = True)
+    isRecent = models.BooleanField(default=False)
 
 class Authors(models.Model):
     name = models.CharField(max_length=255)

@@ -5,6 +5,10 @@ from .models import Users, UsersManager
 
 def index(request):
     # Users.objects.all().delete()
+    print ('*'*100)
+    print Users.objects.all()
+    print ('*'*100)
+
     return render(request, 'login_register/index.html')
 
 def logout(request):

@@ -14,8 +14,6 @@ def index(request):
 def add(request):
     if request.method == "POST":
         book_title = request.POST['book']
-        if book_title == '':
-            book_title = request.POST['select_book']
 
         author_name = request.POST['author']
         if author_name == '':

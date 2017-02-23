@@ -6,6 +6,7 @@ from .models import Users, Validator
 #############################################
 
 def index(request):
+
     print '********************'
     print Users.validate.all()
     print '********************'

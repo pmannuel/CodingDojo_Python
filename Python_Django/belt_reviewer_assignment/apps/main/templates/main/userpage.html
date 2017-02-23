@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bookface's User</title>
+</head>
+<body>
+    <a href="{%url 'main:index'%}">Home</a> |
+    <a href="{%url 'library:index'%}">Add Book and Review</a> |
+    <a href="{%url 'login_register:logout'%}">Log Out</a>
+    {%for user in users%}
+    <h1><i>Hi, I'm </i>{{user.firstname}}!</h1>
+    <h3>Email: {{user.email}}</h3>
+    <h3>Total Reviews: {{user.num_reviews}}</h3>
+    {%endfor%}
+    <h3>Posted Reviews on the following book(s):</h3>
+    <ul>
+        {%for review in reviews_by_user%}
+        <li>{{review.book.title}}</li>
+        {%endfor%}
+    </ul>
+</body>
+</html>

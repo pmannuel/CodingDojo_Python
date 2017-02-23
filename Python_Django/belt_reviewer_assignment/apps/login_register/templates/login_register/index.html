@@ -7,6 +7,8 @@
     <title>Email Validation</title>
 </head>
 <body>
+    <h1>WELCOME TO BOOKFACE</h1>
+    <hr>
     <h1>Log In</h1>
     <form action='{%url 'login_register:login'%}' method='post'>
         {% csrf_token %}
@@ -26,7 +28,6 @@
         <input id="submit" type="submit" name="submit" value="register">
     </form>
     <hr>
-    <h1>MESSAGES:</h1>
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}

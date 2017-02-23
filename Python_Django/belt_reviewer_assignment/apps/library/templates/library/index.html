@@ -7,19 +7,13 @@
     <title>Add Book and Review</title>
 </head>
 <body>
+    <a href="{%url 'main:index'%}">Home</a> |
+    <a href="{%url 'login_register:logout'%}">Log Out</a>
     <h1>Add a New Book Title and Review</h1>
+    <p><i>(<b>DO NOT </b>write a review for an <b>existing</b> book)</i></p>
     <form action='{%url 'library:add'%}' method='post'>
         {% csrf_token %}
-        <h3>Book Title:</h3>
-        Choose from the list:
-        <select class="book" name="select_book">
-            <option value="">book title</option>
-            {%for book in books%}
-            <option value="{{book.title}}">{{book.title}}</option>
-            {% endfor%}
-        </select>
-        <br><br>
-        Or add a new book: <input type="text" name="book"><br><br>
+        <h3>Book Title: <input type="text" name="book"></h3>
         <h3>Author:</h3>
         Choose from the list:
         <select class="author" name="select_author">

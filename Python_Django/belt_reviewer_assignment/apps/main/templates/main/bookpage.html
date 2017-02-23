@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bookface's Book</title>
+</head>
+<body>
+    <a href="{%url 'main:index'%}">Home</a> |
+    <a href="{%url 'login_register:logout'%}">Log Out</a>
+    <h1>{{book.title}}</h1>
+    <p>Author: {{author.name}}</p>
+    <h3>Add a New Review:</h3>
+    <form class="add_review" action="{%url 'main:add_review' book_id=book.id%}" method="post">
+        {% csrf_token %}
+        <textarea name="review" rows="8" cols="80"></textarea><br><br>
+        Rating:
+        <select class="rating" name="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br><br>
+        <input id="submit" type="submit" name="submit" value="Submit Review">
+    </form>
+    <h3>Reviews:</h3>
+    {%for review in reviews%}
+    <hr>
+    <p>Rating: {{review.rating}}</p>
+    <p>
+        <a href="{%url 'main:user' user_id=review.user.id%}">{{review.user.firstname}}</a>
+        says: <i>"{{review.content}}"</i>
+    </p>
+    <p><i>Posted on {{review.created_at}}</i></p>
+    {% if active_user.id ==  review.user.id%}
+    <a href="{%url 'main:del_review' review_id=review.id%}">Delete This Review</a>
+    {%endif%}
+    {%endfor%}
+</body>
+</html>
