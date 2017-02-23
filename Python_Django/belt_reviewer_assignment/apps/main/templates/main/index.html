@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bookface</title>
+</head>
+<body>
+    <a href="{%url 'login_register:logout'%}">Log Out</a>
+    <a href="{%url 'library:index'%}">Add Book and Review</a>
+    <h1>Hello, {{user.firstname}}!</h1>
+    <h3>Recent Book Reviews:</h3>
+    {%for recent_review in recent_reviews%}
+    <a href="">{{recent_review.title}}</a><br>
+    {%endfor%}
+    <h3>Other Book Reviews:</h3>
+    {%for other_review in other_reviews%}
+    <a href="">{{other_review.title}}</a><br>
+    {%endfor%}
+</body>
+</html>

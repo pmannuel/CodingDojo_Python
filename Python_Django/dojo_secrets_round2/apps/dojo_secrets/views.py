@@ -24,32 +24,6 @@ def index(request):
     for secret in secrets:
         print secret.isLiked
 
-    # secrets = secrets.annotate(Likes.objects.filter(user_liked_id=user_id, liked_secrets_id=self.id).exists())
-
-    #option 2
-    # secrets = secrets.annotate(
-    #     alreadyLiked=Case(
-    #         When(Likes.objects.filter(user_liked_id=user_id, liked_secrets_id=self.id).exists(), then=Value('True')),
-    #         default=Value('False')
-    #     )
-    # )
-
-    #option 3
-    # secrets = secrets.annotate(
-    #     alreadyLiked=Case(
-    #         When(hasattr(liked_secrets, user_id), then=Value(True)),
-    #         default=Value(False)
-    #     )
-    # )
-
-    #option 4
-    # secrets = secrets.annotate(
-    #     alreadyLiked=Case(
-    #         When(user_liking=user_id, then=Value('True')),
-    #         default=Value('False')
-    #     )
-    # )
-
     data = {
         "user" : Users.validate.get(id=user_id),
         "secrets" : secrets
