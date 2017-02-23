@@ -6,6 +6,7 @@ from .models import Users, Validator
 #############################################
 
 def index(request):
+
     print '********************'
     print Users.validate.all()
     print '********************'
@@ -31,7 +32,7 @@ def login(request):
                 print user_active.id
                 print '~~~~~~~~~~~~~~~~~~~~~'
                 request.session['active_user_id'] = user_active.id
-                return redirect(reverse('dojo_secrets:index'))
+                return redirect(reverse('main:index'))
             else:
                 messages.error(request,'Incorrect password')
         except:

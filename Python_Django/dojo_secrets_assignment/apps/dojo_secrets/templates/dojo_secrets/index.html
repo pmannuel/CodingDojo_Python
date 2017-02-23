@@ -17,11 +17,18 @@
     </form>
     <hr>
     <h1>Recent Secrets</h1>
+    <a href="{%url 'dojo_secrets:mostpopular'%}">Most Popular Secrets</a>
     {% for secret in secrets%}
     <p>
         {{secret.content}} {{secret.created_at}} <i>{{secret.num_likes}} Likes</i>
-        <a href="{%url 'dojo_secrets:like' id=secret.id%}">👍</a>
-         {{secret.author}}match-> {{user.id}}
+        {% if secret.isLiked %}
+        <b>You liked this</b>
+        {% else %}
+        <a style="text-decoration:none;" href="{%url 'dojo_secrets:like' id=secret.id%}">👍</a>
+        {% endif %}
+        {% if secret.user_id == user.id %}
+        <a href="{%url 'dojo_secrets:delete' id=secret.id%}">delete</a>
+        {% endif %}
     </p>
     {% endfor %}
 </body>
