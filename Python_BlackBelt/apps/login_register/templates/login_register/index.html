@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Email Validation</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'login_register/index.css' %}" >
+</head>
+<body>
+    <div id="wrapper">
+        <div class="banner">
+        </div>
+        <div class="console">
+            <h1>Log In</h1>
+            <form action='{%url 'login_register:login'%}' method='post'>
+                {% csrf_token %}
+                username: <input type="text" name="username"><br><br>
+                password: <input type="password" name="password"><br><br>
+                <input id="submit" type="submit" name="submit" value="log in">
+            </form>
+            <hr>
+            <h1>Not a member? Register today!</h1>
+            <form action='{%url 'login_register:register'%}' method='post'>
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>first name: </td>
+                        <td><input type="text" name="firstname"></td>
+                    </tr>
+                    <tr>
+                        <td>last name: </td>
+                        <td><input type="text" name="lastname"></td>
+                    </tr>
+                    <tr>
+                        <td>username: </td>
+                        <td><input type="text" name="username"></td>
+                    </tr>
+                    <tr>
+                        <td>email address: </td>
+                        <td><input type="text" name="email"></td>
+                    </tr>
+                    <tr>
+                        <td>password: </td>
+                        <td><input type="password" name="password"></td>
+                    </tr>
+                    <tr>
+                        <td>confirm password: </td>
+                        <td><input type="password" name="cpassword"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><i>*password should be at least 8 character</i></td>
+                    </tr>
+                </table><br>
+                <input id="submit" type="submit" name="submit" value="register">
+            </form>
+            <hr>
+            {% if messages %}
+            {% for message in messages %}
+            <p{% if message.tags %} style="color:red" class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

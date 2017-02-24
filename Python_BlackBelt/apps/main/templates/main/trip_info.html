@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <a href="{%url 'main:index'%}">Home</a> |
+    <a href="{%url 'login_register:logout'%}">Log Out</a>
+    <h1>{{trips.destination}}!</h1>
+    <p><b>Planned By: </b>{{trips.user.firstname}}  {{trips.user.lastname}}</p>
+    <p><b>Description: </b>{{trips.description}}</p>
+    <p><b>Travel Date From: </b>{{trips.travel_date_from}}</p>
+    <p><b>Travel Date End: </b>{{trips.travel_date_to}}</p>
+    <h3>Other users joining this trip</h3>
+    {%for user in joining_users%}
+    <p>✌ {{user.joining_user.firstname}}</p>
+    {%endfor%}
+</body>
+</html>

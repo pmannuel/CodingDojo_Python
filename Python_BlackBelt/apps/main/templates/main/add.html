@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Book and Review</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'main/addpage.css' %}" >
+</head>
+<body>
+    <div id="wrapper">
+    <div id="banner">
+        <a href="{%url 'main:index'%}">Home</a>
+        <a href="{%url 'login_register:logout'%}">Log Out</a>
+    </div>
+    <h1>✎ &nbsp&nbspAdd a Trip</h1>
+        <div id="content">
+            <img style="width:100%;" src="{% static 'main/cool.jpg' %}" alt="">
+            <form action='{%url 'main:add'%}' method='post'>
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>Destination</td>
+                        <td>: <input type="text" name="destination"></td>
+                    </tr>
+                        <td>Description</td>
+                        <td>: <input type="text" name="description"></td>
+                    </tr>
+                        <td>Travel Date From</td>
+                        <td>: <input type="date" name="travel_date_from"></td>
+                    </tr>
+                        <td>Travel Date To</td>
+                        <td>: <input type="date" name="travel_date_to"></td>
+                    </tr>
+                </table>
+                <input id="submit" type="submit" name="submit" value="Add Trip">
+            </form>
+            {% if messages %}
+            <p style="color:red">Errors!</p>
+            {% for message in messages %}
+            <p{% if message.tags %} style="color:red" class="{{ message.tags }}" {% endif %}>✖ {{ message }}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
