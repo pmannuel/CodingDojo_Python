@@ -22,6 +22,7 @@ def index(request):
     data = {
         "user" : Users.objects.get(id=user_id),
         "trips" : Trips.objects.all(),
+        "join_trips": Joins.objects.filter(joining_user__id=user_id),
         "other_trips" : Trips.objects.all()
         }
     return render(request, 'main/index.html', data)

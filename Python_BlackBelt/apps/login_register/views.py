@@ -29,7 +29,7 @@ def login(request):
             else:
                 messages.error(request,'Incorrect password')
         else:
-            messages.error(request,'Email does not exist')
+            messages.error(request,'Username does not exist')
 
     return redirect(reverse('login_register:index'))
 
