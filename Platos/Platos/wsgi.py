@@ -1,5 +1,5 @@
 """
-WSGI config for Python_BlackBelt2 project.
+WSGI config for Platos project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Python_BlackBelt2.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Platos.settings")
 
 application = get_wsgi_application()

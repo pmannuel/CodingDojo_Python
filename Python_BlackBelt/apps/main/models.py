@@ -30,5 +30,5 @@ class Trips(models.Model):
     objects = TripsManager()
 
 class Joins(models.Model):
-    trip = models.ForeignKey(Trips)
+    trip = models.ForeignKey(Trips, related_name="trips_joined")
     joining_user = models.ForeignKey(Users)

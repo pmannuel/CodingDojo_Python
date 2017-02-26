@@ -23,7 +23,7 @@ def index(request):
         "user" : Users.objects.get(id=user_id),
         "trips" : Trips.objects.all(),
         "join_trips": Joins.objects.filter(joining_user__id=user_id),
-        "other_trips" : Trips.objects.all()
+        "other_trips" : Trips.objects.all().exclude(trips_joined__joining_user__id=user_id)
         }
     return render(request, 'main/index.html', data)
 
@@ -58,9 +58,10 @@ def add(request):
         return render(request, 'main/add.html')
 
 def trip_info(request, trip_id):
+    user_id = request.session.get('active_user_id')
     data = {
         "trips" : Trips.objects.get(id=trip_id),
-        "joining_users" : Joins.objects.filter(trip__id=trip_id)
+        "joining_users" : Joins.objects.filter(trip__id=trip_id).exclude(joining_user__id=user_id)
         }
     return render(request, 'main/trip_info.html', data)
 
@@ -68,6 +69,6 @@ def join(request, trip_id):
     user_id = request.session.get('active_user_id')
     Joins.objects.create(
         trip = Trips.objects.get(id=trip_id),
-        joining_user = Users.objects.get(id=user_id),
+        joining_user = Users.objects.get(id=user_id)
     )
     return redirect(reverse('main:trip_info', kwargs={'trip_id': trip_id}))

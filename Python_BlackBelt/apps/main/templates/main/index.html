@@ -38,7 +38,7 @@
             {%endfor%}
             {%for join_trip in join_trips%}
             <tr>
-                <td><a href="{%url 'main:trip_info' trip_id=join_trip.id%}">{{join_trip.trip.destination}}</a></td>
+                <td><a href="{%url 'main:trip_info' trip_id=join_trip.trip.id%}">{{join_trip.trip.destination}}</a></td>
                 <td>{{join_trip.trip.travel_date_from}}</td>
                 <td>{{join_trip.trip.travel_date_to}}</td>
                 <td>{{join_trip.trip.description}}</td>
