@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{user.firstname}} {{user.lastname}}</title>
+    {% load staticfiles %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'user_profile/index.css' %}">
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{% static 'js/materialize.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
+    <div id="wrapper">
+        <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="{%url 'user_profile:index' user_id=user.id%}">Profile</a></li>
+            <li><a href="{%url 'user_profile:edit_profile' user_id=user.id%}">Edit Profile</a></li>
+            <li class="divider"></li>
+            <li><a href="{%url 'login_register:logout'%}">Log Out</a></li>
+        </ul>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="{%url 'main:index'%}" class="brand-logo"><img style="height:25px;" src="{% static 'main/logo.png' %}" alt=""> Platos</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="">Message</a></li>
+                    <li><a href="">Schedule</a></li>
+                    <!-- Dropdown Trigger -->
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Hello, {{user.firstname}} !<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="body">
+            <h1>Hello, {{user.firstname}} !</h1>
+        </div>
+    </div>
+</body>
+
+</html>

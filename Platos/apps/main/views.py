@@ -1,11 +1,20 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.core.urlresolvers import reverse
-from .models import Users, UsersManager
+from .models import User, UserManager, Profile
 
 def index(request):
     user_id = request.session.get('active_user_id')
+    if Profile.objects.filter(user__id = user_id).exists():
+        data = {
+            "user" : User.objects.get(id=user_id),
+            "profile" : Profile.objects.get(user__id=user_id),
+            "other_users" : Profile.objects.all().exclude(user__id=user_id),
+            'flag' : True
+            }
+    else:
+        data = {
+            "user" : User.objects.get(id=user_id),
+            'flag' : False
+            }
 
-    data = {
-        "user" : Users.objects.get(id=user_id),
-        }
-    return HttpResponse('Welcome to Platos')
+    return render(request, 'main/index.html', data)

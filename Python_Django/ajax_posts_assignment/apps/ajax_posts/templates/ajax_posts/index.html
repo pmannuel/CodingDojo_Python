@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Posts</h1>
+    <div class="posts">
+        {% for post in posts %}
+        <div class="post">
+            <p style="border:1px solid black;display:inline-block;">{{post.description}}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <form action="{%url 'ajax_posts:posts'%}" method="post">
+        {% csrf_token %}
+        {{new_post_form.as_p}}
+        <input type="submit" name="submit" value="Add New Post">
+    </form>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $('form').submit(function(e){
+        e.preventDefault()
+        $.ajax({
+            url: '/posts/',
+            method: 'post',
+            data: $(this).serialize(),
+            success: function(serverResponse){
+                $('.posts').html(serverResponse)
+            }
+        })
+        $(this).trigger('reset')
+    })
+</script>
+
+</html>

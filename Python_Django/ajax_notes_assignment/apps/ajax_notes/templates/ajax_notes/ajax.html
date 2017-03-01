@@ -1,0 +1,48 @@
+{% for note in notes %}
+	<div class="note" id="{{note.id}}">
+		<form class="" id="form{{note.id}}">
+			{% csrf_token %}
+			<input name ="title" id ="title + {{note.id}}" type="text" value ="{{note.title}}">
+			<br>
+			<textarea name="content" id="content + {{note.id}}" col="25" rows="8">{{note.content}}</textarea>
+            <input type = "hidden" name = "edit_form_id" value = "{{note.id}}">
+		</form>
+        <form id = "deleteform{{note.id}}">
+            {% csrf_token %}
+            <input type = "hidden" name = "id" value = "{{note.id}}">
+            <input type = "submit" value = "Delete">
+        </form>
+    </div>
+{% endfor %}
+
+<script type="text/javascript">
+{% for note in notes %}
+	$('#' + {{note.id}}).on('focusout', function() {
+		console.log("focusout")
+	    $.ajax({
+	      url: '/edit',
+	      method: 'post',
+	      data: $('#form' + {{note.id}}).serialize(),
+	      success: function(res){
+	      	$('#title' + res.id).val(res.title)
+	      	$('#content' + res.id).val(res.content)
+	      }
+	    })
+	    return false;
+	})
+
+    $('#deleteform' + {{note.id}}).submit( function() {
+		console.log('deleted')
+	    $.ajax({
+	      url: '/delete_note',
+	      method: 'post',
+	      data: $(this).serialize(),
+	      success: function(res){
+	      	$('#all_notes').html(res)
+	      }
+	    })
+	    return false;
+	})
+
+{% endfor %}
+</script>

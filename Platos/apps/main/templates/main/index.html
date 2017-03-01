@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Email Validation</title>
+    {% load staticfiles %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/index.css' %}" >
+<body>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{% static 'js/materialize.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
+    <div id="wrapper">
+        <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="{%url 'user_profile:index' user_id=user.id%}">Profile</a></li>
+            <li><a href="{%url 'user_profile:edit_profile' user_id=user.id%}">Edit Profile</a></li>
+            <li class="divider"></li>
+            <li><a href="{%url 'login_register:logout'%}">Log Out</a></li>
+        </ul>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="{%url 'main:index'%}" class="brand-logo"><img style="height:25px;" src="{% static 'main/logo.png' %}" alt=""> Platos</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="">Message</a></li>
+                    <li><a href="">Schedule</a></li>
+                    <!-- Dropdown Trigger -->
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Hello, {{user.firstname}} !<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="body">
+            <h1>Homepage: {{user.firstname}} {{user.lastname}}</h1>
+            {% if flag %}
+            <h3>{{user.firstname}} is located at {{profile.city}} </h3>
+            {% else %}
+                <h3>Your info is incomplete!</h3>
+                <h3>Would you like to update?</h3>
+                <h3><a href="{%url 'user_profile:edit_profile' user_id=user.id %}">Take There!</a></h3>
+            {% endif %}
+            <div id="matches">
+                <table>
+                    <tr>
+                        <th>Username</th>
+                        <th>Location</th>
+                        <th>Distance Away</th>
+                    </tr>
+                    {%for other_user in other_users%}
+                    <tr>
+                        <td>{{other_user.user.firstname}}</td>
+                        <td>{{other_user.city}}</td>
+                        <td id="location{{other_user.user.id}}"></td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            </div>
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            {%for other_user in other_users%}
+            $.ajax({
+                url: 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins={{profile.street_number}},{{profile.route}},{{profile.city}},{{profile.state}}&destinations={{other_user.street_number}},{{other_user.route}},{{other_user.city}},{{other_user.state}}&key=AIzaSyBj4eaE79fE1cqdaq1XZALhzxCpKPd2F2I',
+                method: 'get',
+                success: function(res) {
+                    $('#location'+{{user.id}}).text(res["rows"]["elements"]["distance"]["text"])
+                }
+            })
+            return false;
+            {%endfor%}
+        });
+    </script>
+</body>
+</html>

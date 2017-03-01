@@ -7,7 +7,6 @@
     <title>Email Validation</title>
     {% load staticfiles %}
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="{% static 'login_register/index.css' %}" >
 </head>
 <body>
@@ -51,13 +50,25 @@
                         </tr>
                         <tr>
                             <td class="icon"><img style="height:20%;" src="{% static 'login_register/icon3.png' %}" alt=""></td>
-                            <td><b>Connect </b>&nbsp through sharing activities</td>
+                            <td><b>Connect </b>&nbsp through shared activities</td>
                         </tr>
                     </table>
                 </div>
                 <div id="sign_up_console">
+                    {% if login_attempt%}
+                        <h1>TRIED TO LOG In</h1>
+                    {% endif %}
                     <h1>Sign Up</h1>
                     <h3>It's free to connect.</h3>
+                    <div id="error_messages">
+                        {% if messages %}
+                        <p>&nbsp</p>
+                        {% for message in messages %}
+                        <p{% if message.tags %} style="color:#B94A48" class="{{ message.tags }}" {% endif %}>&nbsp * {{ message }}</p>
+                        {% endfor %}
+                        <p>&nbsp</p>
+                        {% endif %}
+                    </div>
                     <form action='{%url 'login_register:register'%}' method='post'>
                     {% csrf_token %}
                     <table>
@@ -102,13 +113,6 @@
                 <a href="">Help</a>
             </div>
             <p>Platos Ⓒ 2017</p>
-        </div>
-        <div id="error_messages">
-            {% if messages %}
-            {% for message in messages %}
-            <p{% if message.tags %} style="color:#B94A48" class="{{ message.tags }}" {% endif %}>{{ message }}</p>
-            {% endfor %}
-            {% endif %}
         </div>
     </div>
 </body>

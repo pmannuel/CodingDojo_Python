@@ -32,7 +32,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'apps.login_register',
+    'apps.schedules',
     'apps.main',
+    'apps.user_profile',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,3 +122,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = '/Users/jakeherman/Documents/Coding/Platos/apps/login_register/media'
+MEDIA_URL = '/media/'

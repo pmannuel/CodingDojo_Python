@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <title>Ajax Notes</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>Sticky Icky Notes</h1>
+    <form action="{%url 'ajax_notes:add_note' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="title"><br>
+        <textarea name="content"></textarea><br>
+        <input type="submit" value="Add New Note">
+    </form>
+    <hr>
+    <div id="all_notes">
+
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            console.log('Initial display')
+            $.ajax({
+                url: '/add_note',
+                method: 'get',
+                success: function(res) {
+                    $('#all_notes').html(res)
+                }
+            })
+            return false;
+        });
+
+        $('form').submit(function() {
+            console.log('Added new note')
+            $.ajax({
+                url: '/add_note',
+                method: 'post',
+                data: $(this).serialize(),
+                success: function(res) {
+                    $('#all_notes').html(res)
+                }
+            })
+            return false;
+        });
+    </script>
+</body>
+
+</html>

@@ -27,7 +27,6 @@
     align-items: center;
     height: 7vh;
     background-color:  #15253B;
-    /*background: linear-gradient(#009688 95%, #00796B );*/
     color: white;
 }
 
@@ -75,7 +74,7 @@
 }
 
 #header #submit:hover{
-    background: linear-gradient(#344771, #15253B);
+    background: linear-gradient(#26A69A, #00796B);
 }
 
 /*****BODY*****/
@@ -86,7 +85,7 @@
     height: 79vh;
     padding-top: 5vh;
     /*background-color: #FFF8E1;*/
-    background-image: url("splash6.jpg");
+    background-image: url("splash.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     color: white;
@@ -118,8 +117,14 @@
 
 /*sign up*/
 
-#body #sign_up_console{
+#sign_up_console{
     width: 40%;
+}
+
+#error_messages{
+    border-radius: 5px;
+    background-color: #F2DEDE;
+    width: 97.5%;
 }
 
 #body h1{
@@ -128,11 +133,12 @@
 
 #body h3{
     font-weight: lighter;
+    margin-bottom: 1vh;
 }
 
 #body table{
     width: 100%;
-    margin: 2vh 0 4vh 0;
+    margin: 1vh 0 3vh 0;
 }
 
 #body table td input{
